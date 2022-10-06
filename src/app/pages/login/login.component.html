@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="loginform" (submit)="onsubmit()">
+        <div class="form-group" >
+            <label for="username">UserName</label>
+            <input type="text" class="form-control" formControlName='username'
+            [class.is-invalid] = "username?.invalid && username?.touched">
+
+            <div *ngIf="username?.errors && username?.touched">
+                <small class="text-danger" *ngIf="username?.errors?.['required']">UserName is required</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" class="form-control" formControlName = 'password'
+            [class.is-invalid] = "password?.invalid && password?.touched">
+            <div *ngIf="password?.errors && password?.touched">
+                <small class="text-danger" *ngIf="password?.errors?.['required']">password is required</small>
+                <small class="text-danger" *ngIf="password?.errors?.['minlength']">must be of 6 character</small>
+            </div>
+        </div>
+        <button type="submit" [disabled]="loginform.invalid" class="btn btn-primary">Login</button>
+    </form>
+</div>
